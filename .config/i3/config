@@ -38,6 +38,7 @@ bindsym $alt+F4 kill
 exec --no-startup-id feh --bg-scale $HOME/.config/wallpaper.jpg
 exec --no-startup-id xsettingsd &
 exec --no-startup-id compton --config $HOME/.config/compton.conf
+exec_always --no-startup-id numlockx on
 
 #common apps keybind
 bindsym Print exec maim $HOME/Pictures/Screen_$(date +%d_%b_%g_%H:%M)
