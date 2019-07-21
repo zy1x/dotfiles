@@ -48,3 +48,8 @@ locale-gen
 unset LANG
 source /etc/profile.d/locale.sh
 ```
+
+### Setting dns using nmcli
+```
+nmcli connection modify Wired\ connection\ 1 ipv4.dns "8.8.8.8,8.8.4.4"
+```
