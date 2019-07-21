@@ -1,0 +1,118 @@
+## espresso dark color scheme
+#set $background #ffffff
+set $background #2f343f
+set $foreground #efefef
+set $black      #5b4848
+set $red	    #cb6077
+set $green		#bec55b
+set $yellow		#e4bc87
+set $blue		#8ab3d5
+set $magenta    #a89bb9
+set $cyan	    #7bcdb4
+set $white	    #aaaaaa
+
+#Modifier
+set $super Mod4
+set $alt Mod1
+
+#Fonts
+font pango:SF Pro Display, 12
+
+#Gaps
+gaps inner 5
+gaps outer 0
+
+#Restart i3
+bindsym $super+Shift+r restart
+
+#Exit i3
+bindsym $super+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+
+#Autostart
+exec --no-startup-id feh --bg-scale ~/.wallpaper.png
+exec --no-startup-id xsettingsd &
+exec --no-startup-id compton -b
+exec --no-startup-id xrdb ~/.xresources
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+#Starting Terminal & Rofi
+bindsym $super+Tab exec alacritty
+bindsym $super+d exec urxvt
+bindsym $super+Return exec rofi -show drun
+
+#Killing applicationc
+bindsym $super+c kill
+
+#Common apps
+#bindsym Print exec scrot '~/screenshots/capture_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
+#bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e  'viewnior ~/$f'
+bindsym Print exec maim -s ~/screenshots/ss_$(date +%d_%b_%Y_%l:%M).png
+
+#Change volume
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+bindsym XF86AudioMute exec amixer set Master toggle
+
+##################### Windowing and Layout ####################
+
+#Change focus
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
+
+#Move focused
+bindsym $super+Shift+Left move left
+bindsym $super+Shift+Down move down
+bindsym $super+Shift+Up move up
+bindsym $super+Shift+Right move right
+
+#splitting
+bindsym $super+v split v
+bindsym $super+h split h
+
+#Change container layout
+bindsym $super+s layout toggle split
+
+#Toggle floating
+bindsym $super+space floating toggle
+
+#Change focus between tiling / floating windows
+bindsym $super+Shift+space focus mode_toggle
+
+#Full screen mode
+bindsym $super+F fullscreen toggle
+
+#Switch to workspace
+bindsym $alt+Control+Right workspace next
+bindsym $alt+Control+Left workspace prev
+bindsym $super+1 workspace 1
+bindsym $super+2 workspace 2
+bindsym $super+3 workspace 3
+bindsym $super+4 workspace 4
+bindsym $super+5 workspace 5
+bindsym $super+6 workspace 6
+
+#Move focused container to workspace
+bindsym $super+Shift+1 move container to workspace 1
+bindsym $super+Shift+2 move container to workspace 2
+bindsym $super+Shift+3 move container to workspace 3
+bindsym $super+Shift+4 move container to workspace 4
+bindsym $super+Shift+5 move container to workspace 5
+bindsym $super+Shift+6 move container to workspace 6
+
+#Assigning workspaces
+assign [class="discord"] 2
+assign [class="qbittorrent"] 4
+
+#Popup setting
+popup_during_fullscreen smart
+
+#creating border
+for_window [class="^.*"] border pixel 3
+
+## colors                border      	background		text        	indicator
+client.focused          $background		$background		$foreground	 	$background
+client.focused_inactive $background   	$background  	$foreground 	$background
+client.unfocused        $background   	$background  	$foreground 	$background
+client.urgent           $background     $background   	$foreground 	$yellow  

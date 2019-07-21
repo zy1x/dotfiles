@@ -1,0 +1,130 @@
+#wiki
+#i3-gaps : https://github.com/Airblader/i3
+
+# Modifiers
+set $super Mod4
+set $alt Mod1
+
+#set font
+font pango: MACGrande 8
+
+#settings
+#gaps inner 5
+#gaps outer -5
+
+for_window [class=".*"] border pixel 4
+for_window [class=".*"] title_format "<span font='MACGrande 8'> </span>"
+
+#smart_gaps on
+#smart_gaps inverse_outer
+
+#smart_borders on
+#smart_borders no_gaps
+
+#restart i3 inplace
+bindsym $super+Shift+r restart
+
+# exit i3
+bindsym $super+Shift+Escape exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+
+#polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#bindsym $super+t exec $HOME/.config/polybar/launch.sh
+
+#kill window
+bindsym $alt+F4 kill
+
+#autostart (feh xsettingsd compton dunst)
+exec --no-startup-id feh --bg-scale $HOME/.config/wallpaper.jpg
+exec --no-startup-id xsettingsd &
+exec --no-startup-id compton --config $HOME/.config/compton.conf
+
+#common apps keybind
+bindsym Print exec maim $HOME/Pictures/Screen_$(date +%d_%b_%g_%H:%M)
+bindsym $super+Tab exec alacritty
+bindsym $super+Return exec rofi -show drun
+
+############################# Windowing and Layout ##################
+
+# Change focus
+bindsym $super+h focus left
+bindsym $super+k focus down
+bindsym $super+j focus up
+bindsym $super+l focus right
+
+# Change focus (Arrow keys)
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
+
+#Move focused window
+bindsym $super+Shift+h move left
+bindsym $super+Shift+k move down
+bindsym $super+Shift+j move up
+bindsym $super+Shift+l move right
+
+#Move focused window (Arrow keys)
+bindsym $super+Shift+Left move left
+bindsym $super+Shift+Down move down
+bindsym $super+Shift+Up move up
+bindsym $super+Shift+Right move right
+
+# split orientation
+bindsym $super+p split h
+bindsym $super+v split v
+
+# Fullscreen Mode
+bindsym $super+f fullscreen toggle
+
+# change container layout split
+bindsym $super+s layout toggle split
+
+# toggle tiling / floating
+bindsym $super+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $super+Shift+space focus mode_toggle
+
+# switch to workspace
+bindsym $alt+Control+Right workspace next
+bindsym $alt+Control+Left workspace prev
+bindsym $super+1 workspace 1
+bindsym $super+2 workspace 2
+bindsym $super+3 workspace 3
+bindsym $super+4 workspace 4
+bindsym $super+5 workspace 5
+bindsym $super+6 workspace 6
+
+# move focused container to workspace
+bindsym $super+Shift+1 move container to workspace 1
+bindsym $super+Shift+2 move container to workspace 2
+bindsym $super+Shift+3 move container to workspace 3
+bindsym $super+Shift+4 move container to workspace 4
+bindsym $super+Shift+5 move container to workspace 5
+bindsym $super+Shift+6 move container to workspace 6
+
+# set colors
+#set $bg-color            #000000
+#set $inactive-bg-color   #000000
+#set $text-color          #f3f4f5
+#set $inactive-text-color #676E7D
+#set $urgent-bg-color     #E53935
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #aaaaaa
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+#windows rules (xprop)
+for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
+for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
+for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
+
+#Scratch pad
+bindsym $super++Delete scratchpad show
+bindsym $super+Shift+Delete move scratchpad
