@@ -44,14 +44,15 @@ exec_always --no-startup-id numlockx on
 bindsym Print exec maim $HOME/Pictures/Screen_$(date +%d_%b_%g_%H:%M)
 bindsym $super+Tab exec alacritty
 bindsym $super+Return exec rofi -show drun
+bindsym $super+l exec betterlockscreen -l dim
 
 ############################# Windowing and Layout ##################
 
 # Change focus
-bindsym $super+h focus left
-bindsym $super+k focus down
-bindsym $super+j focus up
-bindsym $super+l focus right
+#bindsym $super+h focus left
+#bindsym $super+k focus down
+#bindsym $super+j focus up
+#bindsym $super+l focus right
 
 # Change focus (Arrow keys)
 bindsym $super+Left focus left
@@ -60,10 +61,10 @@ bindsym $super+Up focus up
 bindsym $super+Right focus right
 
 #Move focused window
-bindsym $super+Shift+h move left
-bindsym $super+Shift+k move down
-bindsym $super+Shift+j move up
-bindsym $super+Shift+l move right
+#bindsym $super+Shift+h move left
+#bindsym $super+Shift+k move down
+#bindsym $super+Shift+j move up
+#bindsym $super+Shift+l move right
 
 #Move focused window (Arrow keys)
 bindsym $super+Shift+Left move left
@@ -72,7 +73,7 @@ bindsym $super+Shift+Up move up
 bindsym $super+Shift+Right move right
 
 # split orientation
-bindsym $super+p split h
+bindsym $super+h split h
 bindsym $super+v split v
 
 # Fullscreen Mode
