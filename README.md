@@ -37,3 +37,14 @@ makepkg-si
 systemctl enable NetworkManager.service
 systemctl enable fstrim.timer
 ```
+
+### Settings timezone and time
+```
+timedatectl set-timezone Asia/Kolkata
+```
+#### Uncomment locale in /etc/locale.gen
+```
+locale-gen
+unset LANG
+source /etc/profile.d/locale.sh
+```
