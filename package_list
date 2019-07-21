@@ -1,6 +1,6 @@
 i3-gaps
 rofi
-xorg-xini
+xorg-xinit
 tmux
 xorg-server
 alacritty
