@@ -1,0 +1,125 @@
+#----------------------------------------------------------------------
+# remap prefix from 'C-b' tp 'C-a'
+unbind C-b
+set-option -g prefix C-Space
+bind-key C-Space send-prefix
+
+# Splitting panes using | and -
+bind - split-window -h
+bind _ split-window -v
+unbind '"'
+unbind %
+
+# Reload config file
+bind r source-file ~/.config/tmux/tmux.conf
+
+#----------------------------------------------------------------------
+# Display
+set -g base-index 1 #start windows numbering at 1
+setw -g pane-base-index 1 #make pane numbering consistent with windows
+
+# don't rename windows automatically
+set-option -g allow-rename off
+
+setw -g automatic-rename off #rename window to reflect current program
+set -g renumber-windows on #renumber windows when window is closed
+
+set -g set-titles off #set terminal title
+
+set -g display-panes-time 800 # slightly longer pane indicators display time
+set -g display-time 1000      # slightly longer status messages display time
+
+set -g status-interval 10     # redraw status line every 10 seconds
+
+# activity
+set -g monitor-activity on
+set -g visual-activity off
+
+#-------------------------------------------------------------------------
+# navigation
+
+bind C-c new-session #Create session
+
+# find session
+bind C-f command-prompt -p find-session 'switch-client -t %%'
+
+# switch panes using Alt-arrow without prefix
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# pane resizing
+bind -r H resize-pane -L 2
+bind -r J resize-pane -D 2
+bind -r K resize-pane -U 2
+bind -r L resize-pane -R 2
+
+#Window navigation
+unbind n
+unbind p
+bind , previous-window
+bind . next-window
+bind Tab last-window
+
+# Enable mouse mode (tmux 2.1 and above)
+set -g mouse on
+
+#----------------------------------DESIGN---------------------------------------
+# Status update interval
+set -g status-interval 1
+
+# Basic status bar colors
+set -g status-style bg=black,fg=cyan
+
+# Left side of status bar
+set -g status-left-style bg=black,fg=green
+set -g status-left-length 40
+set -g status-left "#S #[fg=white]» "
+
+# Right side of status bar
+set -g status-right-style bg=black,fg=cyan
+set -g status-right-length 40
+set -g status-right "#H #[fg=white]«#[fg=yellow]%l:%M:%p #[fg=white]« #[fg=green]%d-%b-%y"
+
+# Window status
+set -g window-status-format " #I:#W#F "
+set -g window-status-current-format " #I:#W#F "
+
+# Current window status
+set -g window-status-current-style bg=red,fg=black
+
+# Window with activity status
+set -g window-status-activity-style bg=black,fg=yellow
+
+# Window separator
+set -g window-status-separator ""
+
+# Window status alignment
+set -g status-justify left
+
+# Pane border
+set -g pane-border-style bg=default,fg=default
+
+# Active pane border
+set -g pane-active-border-style bg=default,fg=green
+
+# Pane number indicator
+set -g display-panes-colour default
+set -g display-panes-active-colour default
+
+# Clock mode
+set -g clock-mode-colour red
+set -g clock-mode-style 24
+
+# Message
+set -g message-style bg=default,fg=default
+
+# Command message
+set -g message-command-style bg=default,fg=default
+
+# Mode
+set -g mode-style bg=red,fg=default
+
+#-------------------------------------------------------------------------------
+#source-file "${HOME}/.tmux-themepack/basic.tmuxtheme"
