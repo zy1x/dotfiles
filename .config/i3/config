@@ -41,7 +41,7 @@ exec --no-startup-id compton --config $HOME/.config/compton.conf
 exec_always --no-startup-id numlockx on
 
 #common apps keybind
-bindsym Print exec maim $HOME/Pictures/Screen_$(date +%d_%b_%g_%H:%M)
+bindsym Print exec maim $HOME/Pictures/Screen_$(date +%d_%b_%g_%H:%M).png
 bindsym $super+Tab exec alacritty
 bindsym $super+Return exec rofi -show drun
 bindsym $super+l exec betterlockscreen -l dim
