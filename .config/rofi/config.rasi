@@ -19,6 +19,7 @@ configuration {
     padding: 40;
     width: 25%;
     height: 50%;
+    background-color: #1d2021;
 }
  
 #mainbox {
